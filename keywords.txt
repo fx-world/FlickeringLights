@@ -1,0 +1,8 @@
+WelderLight	KEYWORD1
+setup	KEYWORD2
+step	KEYWORD2
+setOnCycles	KEYWORD2
+setOffCycles	KEYWORD2
+setPauseCycles	KEYWORD2
+setNoPauseCycles	KEYWORD2
+setSound	KEYWORD2
