@@ -32,8 +32,8 @@ private:
 	uint8_t pin;
 	uint8_t soundPin = -1;
 
-	int  soundMin = 6000;
-	int  soundMax = 8000;
+	unsigned int  soundMin = 6000;
+	unsigned int  soundMax = 8000;
 
 };
 

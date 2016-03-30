@@ -25,11 +25,24 @@ public:
 
 	void setup();
 
+	void setOnBrightness(unsigned int min, unsigned int max);
+	void setOffBrightness(unsigned int min, unsigned int max);
+	void setPauseBrightness(unsigned int min, unsigned int max);
+
 protected:
 	void updateState(bool state, bool pause);
 
 private:
 	uint8_t pin;
+
+	unsigned int onBrightnessMin = 150;
+	unsigned int onBrightnessMax = 255;
+
+	unsigned int offBrightnessMin = 75;
+	unsigned int offBrightnessMax = 175;
+
+	unsigned int pauseBrightnessMin = 75;
+	unsigned int pauseBrightnessMax = 175;
 };
 
 #endif /* TVLIGHT_H_ */

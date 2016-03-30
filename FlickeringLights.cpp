@@ -11,6 +11,8 @@
  */
 
 #include <Arduino.h>
+#include "WelderLight.h"
+#include "TVLight.h"
 
 TVLight light = TVLight(9);
 

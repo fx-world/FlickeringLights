@@ -54,8 +54,8 @@ public:
 	unsigned int  noPauseCycleMin = 10;
 	unsigned int  noPauseCycleMax = 200;
 
-	int  pauseCycleMin = 10;
-	int  pauseCycleMax = 200;
+	unsigned int  pauseCycleMin = 10;
+	unsigned int  pauseCycleMax = 200;
 };
 
 #endif /* FLICKERINGLIGHT_H_ */
