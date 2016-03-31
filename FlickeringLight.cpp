@@ -26,7 +26,7 @@ void FlickeringLight::step(void) {
 		noPauseCycle--;
 
 		if (cycle <= 0) {
-			if (state) {
+			if (state == on) {
 				state = off;
 				cycle = random(offCycleMax*cycleMultiplier - offCycleMin*cycleMultiplier) + offCycleMin*cycleMultiplier;
 			} else {

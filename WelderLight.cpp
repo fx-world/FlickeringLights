@@ -37,14 +37,14 @@ void WelderLight::setup() {
 void WelderLight::updateState(LightState state) {
 	switch (state) {
 		case on:
-			digitalWrite(pin, state);
+			digitalWrite(pin, true);
 			if (soundPin > 0) {
 				tone(soundPin, random(soundMax - soundMin) + soundMin);
 			}
 			break;
 
 		case off:
-			digitalWrite(pin, state);
+			digitalWrite(pin, false);
 			if (soundPin > 0) {
 				noTone(soundPin);
 			}

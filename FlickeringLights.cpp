@@ -14,10 +14,10 @@
 #include "WelderLight.h"
 #include "TVLight.h"
 
-TVLight light = TVLight(9);
+//TVLight light = TVLight(9);
+WelderLight light = WelderLight(9);
 
 void setup() {
-	Serial.begin(9800);
 	light.setup();
 }
 
