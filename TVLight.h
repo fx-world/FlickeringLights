@@ -30,7 +30,7 @@ public:
 	void setPauseBrightness(unsigned int min, unsigned int max);
 
 protected:
-	void updateState(bool state, bool pause);
+	void updateState(LightState state);
 
 private:
 	uint8_t pin;

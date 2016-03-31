@@ -34,23 +34,35 @@ void WelderLight::setup() {
 	pinMode(pin, OUTPUT);
 }
 
-void WelderLight::updateState(bool state, bool pause) {
-	if (!pause) {
-		digitalWrite(pin, state);
-
-		if (soundPin > 0) {
-			if (state) {
+void WelderLight::updateState(LightState state) {
+	switch (state) {
+		case on:
+			digitalWrite(pin, state);
+			if (soundPin > 0) {
 				tone(soundPin, random(soundMax - soundMin) + soundMin);
-			} else {
+			}
+			break;
+
+		case off:
+			digitalWrite(pin, state);
+			if (soundPin > 0) {
 				noTone(soundPin);
 			}
-		}
-	} else {
-		digitalWrite(pin, 0);
+			break;
 
-		if (soundPin > 0) {
-			noTone(soundPin);
-		}
+		case paused:
+			digitalWrite(pin, 0);
+			if (soundPin > 0) {
+				noTone(soundPin);
+			}
+			break;
+
+		case disabled:
+			digitalWrite(pin, 0);
+			if (soundPin > 0) {
+				noTone(soundPin);
+			}
+			break;
 	}
 }
 

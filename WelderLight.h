@@ -26,7 +26,7 @@ public:
 	void setSound(int min, int max);
 
 protected:
-	void updateState(bool state, bool pause);
+	void updateState(LightState state);
 
 private:
 	uint8_t pin;

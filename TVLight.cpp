@@ -28,16 +28,23 @@ void TVLight::setup() {
 	pinMode(pin, OUTPUT);
 }
 
-void TVLight::updateState(bool state, bool pause) {
-	if (!pause) {
-		if (state) {
+void TVLight::updateState(LightState state) {
+	switch (state) {
+		case on:
 			analogWrite(pin, random(onBrightnessMax - onBrightnessMin) + onBrightnessMin);
-		} else {
-			analogWrite(pin, random(offBrightnessMax - offBrightnessMin) + offBrightnessMin);
-		}
+			break;
 
-	} else {
-		analogWrite(pin, random(pauseBrightnessMax - pauseBrightnessMin) + pauseBrightnessMin);
+		case off:
+			analogWrite(pin, random(offBrightnessMax - offBrightnessMin) + offBrightnessMin);
+			break;
+
+		case paused:
+			analogWrite(pin, random(pauseBrightnessMax - pauseBrightnessMin) + pauseBrightnessMin);
+			break;
+
+		case disabled:
+			analogWrite(pin, 0);
+			break;
 	}
 }
 

@@ -21,44 +21,55 @@ FlickeringLight::~FlickeringLight() {
 }
 
 void FlickeringLight::step(void) {
-	if (!pause) {
+	if ((state == on) || (state == off)) {
 		cycle--;
 		noPauseCycle--;
 
 		if (cycle <= 0) {
 			if (state) {
-				state = false;
+				state = off;
 				cycle = random(offCycleMax*cycleMultiplier - offCycleMin*cycleMultiplier) + offCycleMin*cycleMultiplier;
 			} else {
-				state = true;
+				state = on;
 				cycle = random(onCycleMax*cycleMultiplier - onCycleMin*cycleMultiplier) + onCycleMin*cycleMultiplier;
 			}
 		}
 
 		if (noPauseCycle <= 0) {
-			pause = true;
-			state = false;
+			state = paused;
 			cycle = random(pauseCycleMax*cycleMultiplier - pauseCycleMin*cycleMultiplier) + pauseCycleMin*cycleMultiplier;
 		}
 
-		updateState(state, pause);
+		updateState(state);
 
-	} else {
+	} else if (state == paused) {
 		cycle--;
 		if (cycle <= 0) {
-			pause = false;
+			state        = on;
 			noPauseCycle = random(noPauseCycleMax*cycleMultiplier - noPauseCycleMin*cycleMultiplier) + noPauseCycleMin*cycleMultiplier;
-
-			state = true;
-			cycle = random(onCycleMax*cycleMultiplier - onCycleMin*cycleMultiplier) + onCycleMin*cycleMultiplier;
+			cycle        = random(onCycleMax*cycleMultiplier - onCycleMin*cycleMultiplier) + onCycleMin*cycleMultiplier;
 		}
 
-		updateState(state, pause);
+		updateState(state);
+
+	} else {
+		// nothing to do when disabled
 	}
 }
 
-void FlickeringLight::updateState(bool state, bool pause) {
+void FlickeringLight::updateState(LightState state) {
 
+}
+
+void FlickeringLight::setEnabled(bool value) {
+	if (value) {
+		if (state == disabled) {
+			state = on;
+		}
+	} else {
+		state = disabled;
+		updateState(state);
+	}
 }
 
 void FlickeringLight::setOnCycles(unsigned int min, unsigned int max) {

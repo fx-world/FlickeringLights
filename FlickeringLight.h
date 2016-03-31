@@ -19,6 +19,13 @@
  #include "WProgram.h"
 #endif
 
+enum LightState {
+	on,
+	off,
+	paused,
+	disabled
+};
+
 class FlickeringLight {
 public:
 	FlickeringLight();
@@ -31,31 +38,29 @@ public:
 	void setPauseCycles(unsigned int min, unsigned int max);
 	void setNoPauseCycles(unsigned int min, unsigned int max);
 
-	void setDebug(bool value);
+	void setEnabled(bool value);
 
 protected:
-	virtual void updateState(bool state, bool pause);
+	virtual void updateState(LightState state);
 
-public:
-	bool debug = false;
-	bool state = false;
-	bool pause = false;
+private:
+	LightState state = off;
 
 	unsigned int cycle           = 10;
-	unsigned int  cycleMultiplier = 100;
+	unsigned int cycleMultiplier = 100;
 
-	unsigned int  onCycleMin = 1;
-	unsigned int  onCycleMax = 5;
+	unsigned int onCycleMin = 1;
+	unsigned int onCycleMax = 5;
 
-	unsigned int  offCycleMin = 1;
-	unsigned int  offCycleMax = 5;
+	unsigned int offCycleMin = 1;
+	unsigned int offCycleMax = 5;
 
-	unsigned int  noPauseCycle = 10;
-	unsigned int  noPauseCycleMin = 10;
-	unsigned int  noPauseCycleMax = 200;
+	unsigned int noPauseCycle = 10;
+	unsigned int noPauseCycleMin = 10;
+	unsigned int noPauseCycleMax = 200;
 
-	unsigned int  pauseCycleMin = 10;
-	unsigned int  pauseCycleMax = 200;
+	unsigned int pauseCycleMin = 10;
+	unsigned int pauseCycleMax = 200;
 };
 
 #endif /* FLICKERINGLIGHT_H_ */
