@@ -17,8 +17,7 @@
 
 class WelderLight : public FlickeringLight {
 public:
-	WelderLight(uint8_t pin);
-	WelderLight(uint8_t pin, uint8_t soundPin);
+	WelderLight(uint8_t pin, uint8_t soundPin = 0);
 	virtual ~WelderLight();
 
 	void setup();
@@ -30,7 +29,7 @@ protected:
 
 private:
 	uint8_t pin;
-	uint8_t soundPin = -1;
+	uint8_t soundPin = 0;
 
 	unsigned int  soundMin = 6000;
 	unsigned int  soundMax = 8000;

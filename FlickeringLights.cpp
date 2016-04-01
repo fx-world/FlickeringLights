@@ -14,8 +14,7 @@
 #include "WelderLight.h"
 #include "TVLight.h"
 
-//TVLight light = TVLight(9);
-WelderLight light = WelderLight(9);
+WelderLight light = WelderLight(9,6);
 
 void setup() {
 	light.setup();

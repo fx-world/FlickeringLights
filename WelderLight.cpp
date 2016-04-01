@@ -12,10 +12,6 @@
 
 #include "WelderLight.h"
 
-WelderLight::WelderLight(uint8_t pin) {
-	this->pin = pin;
-}
-
 WelderLight::WelderLight(uint8_t pin, uint8_t soundPin) {
 	this->pin      = pin;
 	this->soundPin = soundPin;
