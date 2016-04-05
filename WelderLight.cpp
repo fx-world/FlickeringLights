@@ -20,6 +20,9 @@ WelderLight::WelderLight(uint8_t pin, uint8_t soundPin) {
 	setOffCycles(1, 5);
 	setNoPauseCycles(10, 200);
 	setPauseCycles(10, 200);
+
+	setLightFuntion(&defaultLightFunction);
+	setSoundFuntion(&defaultSoundFunction);
 }
 
 WelderLight::~WelderLight() {
@@ -30,35 +33,47 @@ void WelderLight::setup() {
 	pinMode(pin, OUTPUT);
 }
 
-void WelderLight::updateState(LightState state) {
+void WelderLight::defaultLightFunction(const FlickeringLight* light, const LightState state) {
+	WelderLight* weldingLight = (WelderLight*) light;
 	switch (state) {
 		case on:
-			digitalWrite(pin, true);
-			if (soundPin > 0) {
-				tone(soundPin, random(soundMax - soundMin) + soundMin);
-			}
+			digitalWrite(weldingLight->pin, true);
 			break;
 
 		case off:
-			digitalWrite(pin, false);
-			if (soundPin > 0) {
-				noTone(soundPin);
-			}
+			digitalWrite(weldingLight->pin, false);
 			break;
 
 		case paused:
-			digitalWrite(pin, 0);
-			if (soundPin > 0) {
-				noTone(soundPin);
-			}
+			digitalWrite(weldingLight->pin, 0);
 			break;
 
 		case disabled:
-			digitalWrite(pin, 0);
-			if (soundPin > 0) {
-				noTone(soundPin);
-			}
+			digitalWrite(weldingLight->pin, 0);
 			break;
+	}
+}
+
+void WelderLight::defaultSoundFunction(const FlickeringLight* light, const LightState state) {
+	WelderLight* weldingLight = (WelderLight*) light;
+	if (weldingLight->soundPin > 0) {
+		switch (state) {
+			case on:
+				tone(weldingLight->soundPin, random(weldingLight->soundMax - weldingLight->soundMin) + weldingLight->soundMin);
+				break;
+
+			case off:
+				noTone(weldingLight->soundPin);
+				break;
+
+			case paused:
+				noTone(weldingLight->soundPin);
+				break;
+
+			case disabled:
+				noTone(weldingLight->soundPin);
+				break;
+		}
 	}
 }
 

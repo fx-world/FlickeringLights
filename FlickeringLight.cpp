@@ -58,7 +58,21 @@ void FlickeringLight::step(void) {
 }
 
 void FlickeringLight::updateState(LightState state) {
+	if (lightFunction != 0) {
+		lightFunction(this, state);
+	}
 
+	if (soundFunction != 0) {
+		soundFunction(this, state);
+	}
+}
+
+void FlickeringLight::setLightFuntion(void(*lightFunction)(const FlickeringLight*, const LightState)) {
+	this->lightFunction = lightFunction;
+}
+
+void FlickeringLight::setSoundFuntion(void(*soundFunction)(const FlickeringLight*, const LightState)) {
+	this->soundFunction = soundFunction;
 }
 
 void FlickeringLight::setEnabled(bool value) {

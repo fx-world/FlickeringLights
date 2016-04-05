@@ -24,15 +24,15 @@ public:
 
 	void setSound(int min, int max);
 
-protected:
-	void updateState(LightState state);
-
 private:
 	uint8_t pin;
 	uint8_t soundPin = 0;
 
-	unsigned int  soundMin = 6000;
-	unsigned int  soundMax = 8000;
+	unsigned int soundMin = 6000;
+	unsigned int soundMax = 8000;
+
+	static void defaultLightFunction(const FlickeringLight*, const LightState);
+	static void defaultSoundFunction(const FlickeringLight*, const LightState);
 
 };
 

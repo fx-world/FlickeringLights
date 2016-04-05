@@ -15,9 +15,6 @@
 
 #include "FlickeringLight.h"
 
-#define TV_LIGHT_10ms 0
-#define TV_LIGHT_100us 10
-
 class TVLight : public FlickeringLight {
 public:
 	TVLight(uint8_t pin);
@@ -28,9 +25,6 @@ public:
 	void setOnBrightness(unsigned int min, unsigned int max);
 	void setOffBrightness(unsigned int min, unsigned int max);
 	void setPauseBrightness(unsigned int min, unsigned int max);
-
-protected:
-	void updateState(LightState state);
 
 private:
 	uint8_t pin;
@@ -43,6 +37,9 @@ private:
 
 	unsigned int pauseBrightnessMin = 75;
 	unsigned int pauseBrightnessMax = 175;
+
+	static void defaultLightFunction(const FlickeringLight*, const LightState);
+	static void defaultSoundFunction(const FlickeringLight*, const LightState);
 };
 
 #endif /* TVLIGHT_H_ */

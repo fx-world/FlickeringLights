@@ -40,8 +40,11 @@ public:
 
 	void setEnabled(bool value);
 
+	void setLightFuntion(void(*lightFunction)(const FlickeringLight*, const LightState));
+	void setSoundFuntion(void(*soundFunction)(const FlickeringLight*, const LightState));
+
 protected:
-	virtual void updateState(LightState state);
+	void updateState(LightState state);
 
 private:
 	LightState state = off;
@@ -61,6 +64,9 @@ private:
 
 	unsigned int pauseCycleMin = 10;
 	unsigned int pauseCycleMax = 200;
+
+	void(*lightFunction)(const FlickeringLight*, const LightState) = 0;
+	void(*soundFunction)(const FlickeringLight*, const LightState) = 0;
 };
 
 #endif /* FLICKERINGLIGHT_H_ */

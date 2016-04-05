@@ -19,6 +19,9 @@ TVLight::TVLight(uint8_t pin) {
 	setOffCycles(25, 75);
 	setNoPauseCycles(1000, 2000);
 	setPauseCycles(50, 150);
+
+	setLightFuntion(defaultLightFunction);
+	setSoundFuntion(defaultSoundFunction);
 }
 
 TVLight::~TVLight() {
@@ -28,24 +31,30 @@ void TVLight::setup() {
 	pinMode(pin, OUTPUT);
 }
 
-void TVLight::updateState(LightState state) {
+void TVLight::defaultLightFunction(const FlickeringLight* light, const LightState state) {
+	TVLight* tvLight = (TVLight*) light;
 	switch (state) {
 		case on:
-			analogWrite(pin, random(onBrightnessMax - onBrightnessMin) + onBrightnessMin);
+			analogWrite(tvLight->pin, random(tvLight->onBrightnessMax - tvLight->onBrightnessMin) + tvLight->onBrightnessMin);
 			break;
 
 		case off:
-			analogWrite(pin, random(offBrightnessMax - offBrightnessMin) + offBrightnessMin);
+			analogWrite(tvLight->pin, random(tvLight->offBrightnessMax - tvLight->offBrightnessMin) + tvLight->offBrightnessMin);
 			break;
 
 		case paused:
-			analogWrite(pin, random(pauseBrightnessMax - pauseBrightnessMin) + pauseBrightnessMin);
+			analogWrite(tvLight->pin, random(tvLight->pauseBrightnessMax - tvLight->pauseBrightnessMin) + tvLight->pauseBrightnessMin);
 			break;
 
 		case disabled:
-			analogWrite(pin, 0);
+			analogWrite(tvLight->pin, 0);
 			break;
 	}
+}
+
+void TVLight::defaultSoundFunction(const FlickeringLight* light, const LightState state) {
+	TVLight* tvLight = (TVLight*) light;
+
 }
 
 void TVLight::setOnBrightness(unsigned int min, unsigned int max) {
