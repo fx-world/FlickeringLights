@@ -28,7 +28,9 @@ TVLight::~TVLight() {
 }
 
 void TVLight::setup() {
-	pinMode(pin, OUTPUT);
+	if (lightFunction == &defaultLightFunction) {
+		pinMode(pin, OUTPUT);
+	}
 }
 
 void TVLight::defaultLightFunction(const FlickeringLight* light, const LightState state) {

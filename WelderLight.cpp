@@ -30,7 +30,9 @@ WelderLight::~WelderLight() {
 }
 
 void WelderLight::setup() {
-	pinMode(pin, OUTPUT);
+	if (lightFunction == &defaultLightFunction) {
+		pinMode(pin, OUTPUT);
+	}
 }
 
 void WelderLight::defaultLightFunction(const FlickeringLight* light, const LightState state) {

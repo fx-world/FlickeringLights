@@ -46,6 +46,9 @@ public:
 protected:
 	void updateState(LightState state);
 
+	void(*lightFunction)(const FlickeringLight*, const LightState) = 0;
+	void(*soundFunction)(const FlickeringLight*, const LightState) = 0;
+
 private:
 	LightState state = off;
 
@@ -64,9 +67,6 @@ private:
 
 	unsigned int pauseCycleMin = 10;
 	unsigned int pauseCycleMax = 200;
-
-	void(*lightFunction)(const FlickeringLight*, const LightState) = 0;
-	void(*soundFunction)(const FlickeringLight*, const LightState) = 0;
 };
 
 #endif /* FLICKERINGLIGHT_H_ */
