@@ -14,7 +14,6 @@ FlickeringLights is a small library for Arduino, that simulates a different ligh
 WelderLight light = WelderLight(9, 5); // light on pin 9 and sound on pin 5
 
 void setup() {
-	Serial.begin(9800);
 	light.setup();
 }
 
@@ -30,7 +29,6 @@ void loop() {
 TVLight light = TVLight(9); // on pin 9
 
 void setup() {
-	Serial.begin(9800);
 	light.setup();
 }
 
