@@ -6,7 +6,7 @@ FlickeringLights is a small library for Arduino, that simulates different lights
 
 [Zip](https://github.com/fx-world/FlickeringLights/archive/master.zip)
 
-## Examples<img style="float: right;" src="examples.png">
+## Examples
 
 * [Welding Light](examples/SimpleWelderLight)
 * [TV Light](examples/SimpleTVLight)
