@@ -1,8 +1,16 @@
+TVLight	KEYWORD1
 WelderLight	KEYWORD1
+FlickeringLight	KEYWORD1
 setup	KEYWORD2
 step	KEYWORD2
 setOnCycles	KEYWORD2
 setOffCycles	KEYWORD2
 setPauseCycles	KEYWORD2
 setNoPauseCycles	KEYWORD2
+setEnabled	KEYWORD2
+setLightFuntion	KEYWORD2
+setSoundFuntion	KEYWORD2
+setOnBrightness	KEYWORD2
+setOffBrightness	KEYWORD2
+setPauseBrightness	KEYWORD2
 setSound	KEYWORD2
