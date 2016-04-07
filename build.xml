@@ -1,0 +1,27 @@
+<project name="FlickeringLights" default="dist" basedir=".">
+	<property name="dist" location="dist"/>
+
+	<target name="init">
+    	<tstamp/>
+    	<mkdir dir="${dist}"/>
+	</target>
+
+
+	<target name="dist" depends="init" description="generate the distribution">
+		<zip destfile="${dist}/FlickeringLights.zip">
+			<fileset dir=".">
+				<include name="examples/**/*" />
+				<include name="*.h" />
+				<include name="*.cpp" />
+				<include name="keywords.txt" />
+				<include name="LICENSE" />
+				<include name="*.md" />
+				<exclude name="FlickeringLights.cpp" />
+			</fileset>
+  		</zip>
+	</target>
+
+	<target name="clean" description="clean up">
+		<delete dir="${dist}"/>
+	</target>
+</project>
