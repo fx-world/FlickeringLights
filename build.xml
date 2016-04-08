@@ -14,6 +14,7 @@
 				<include name="*.h" />
 				<include name="*.cpp" />
 				<include name="keywords.txt" />
+				<include name="library.properties" />
 				<include name="LICENSE" />
 				<include name="*.md" />
 				<exclude name="FlickeringLights.cpp" />
