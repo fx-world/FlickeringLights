@@ -1,25 +1,32 @@
 <project name="FlickeringLights" default="dist" basedir=".">
-	<property name="dist" location="dist"/>
+	<property name="dist"    location="dist"/>
+	<property name="zipfile" value="${dist}/FlickeringLights.zip"/>
 
 	<target name="init">
-    	<tstamp/>
+    	<tstamp>
+    		 <format property="TIMESTAMP" pattern="MM/dd/yyyy HH:mm" />
+    	</tstamp>
+		<echo message="Starting at ${TIMESTAMP}"/>
     	<mkdir dir="${dist}"/>
 	</target>
 
-
 	<target name="dist" depends="init" description="generate the distribution">
-		<zip destfile="${dist}/FlickeringLights.zip">
-			<fileset dir=".">
-				<include name="examples/**/*" />
-				<include name="*.h" />
-				<include name="*.cpp" />
-				<include name="keywords.txt" />
-				<include name="library.properties" />
-				<include name="LICENSE" />
-				<include name="*.md" />
-				<exclude name="FlickeringLights.cpp" />
-			</fileset>
-  		</zip>
+		<echo message="Creating ${zipfile}"/>
+		<zip destfile="${zipfile}">
+			<mappedresources>
+				<fileset dir=".">
+					<include name="examples/**/*" />
+					<include name="*.h" />
+					<include name="*.cpp" />
+					<include name="keywords.txt" />
+					<include name="library.properties" />
+					<include name="LICENSE" />
+					<include name="*.md" />
+					<exclude name="FlickeringLights.cpp" />
+				</fileset>
+				<globmapper from="*" to="FlickeringLights/*"/>
+			</mappedresources>
+  		</zip>		
 	</target>
 
 	<target name="clean" description="clean up">
