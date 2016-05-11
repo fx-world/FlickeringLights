@@ -21,6 +21,8 @@ FlickeringLight::~FlickeringLight() {
 }
 
 void FlickeringLight::step(void) {
+	LightState lastState = state;
+
 	if ((state == on) || (state == off)) {
 		cycle--;
 		noPauseCycle--;
@@ -40,7 +42,7 @@ void FlickeringLight::step(void) {
 			cycle = random(pauseCycleMax*cycleMultiplier - pauseCycleMin*cycleMultiplier) + pauseCycleMin*cycleMultiplier;
 		}
 
-		updateState(state);
+		updateState(state, state != lastState);
 
 	} else if (state == paused) {
 		cycle--;
@@ -50,28 +52,28 @@ void FlickeringLight::step(void) {
 			cycle        = random(onCycleMax*cycleMultiplier - onCycleMin*cycleMultiplier) + onCycleMin*cycleMultiplier;
 		}
 
-		updateState(state);
+		updateState(state, state != lastState);
 
 	} else {
 		// nothing to do when disabled
 	}
 }
 
-void FlickeringLight::updateState(LightState state) {
+void FlickeringLight::updateState(LightState state, bool changed) {
 	if (lightFunction != 0) {
-		lightFunction(this, state);
+		lightFunction(this, state, changed);
 	}
 
 	if (soundFunction != 0) {
-		soundFunction(this, state);
+		soundFunction(this, state, changed);
 	}
 }
 
-void FlickeringLight::setLightFuntion(void(*lightFunction)(const FlickeringLight*, const LightState)) {
+void FlickeringLight::setLightFuntion(void(*lightFunction)(const FlickeringLight*, const LightState, const bool)) {
 	this->lightFunction = lightFunction;
 }
 
-void FlickeringLight::setSoundFuntion(void(*soundFunction)(const FlickeringLight*, const LightState)) {
+void FlickeringLight::setSoundFuntion(void(*soundFunction)(const FlickeringLight*, const LightState, const bool)) {
 	this->soundFunction = soundFunction;
 }
 
@@ -82,7 +84,7 @@ void FlickeringLight::setEnabled(bool value) {
 		}
 	} else {
 		state = disabled;
-		updateState(state);
+		updateState(state, true);
 	}
 }
 

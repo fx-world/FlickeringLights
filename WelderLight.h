@@ -31,8 +31,8 @@ private:
 	unsigned int soundMin = 6000;
 	unsigned int soundMax = 8000;
 
-	static void defaultLightFunction(const FlickeringLight*, const LightState);
-	static void defaultSoundFunction(const FlickeringLight*, const LightState);
+	static void defaultLightFunction(const FlickeringLight*, const LightState, const bool changed);
+	static void defaultSoundFunction(const FlickeringLight*, const LightState, const bool changed);
 
 };
 

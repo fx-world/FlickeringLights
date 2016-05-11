@@ -33,7 +33,7 @@ void TVLight::setup() {
 	}
 }
 
-void TVLight::defaultLightFunction(const FlickeringLight* light, const LightState state) {
+void TVLight::defaultLightFunction(const FlickeringLight* light, const LightState state, const bool changed) {
 	TVLight* tvLight = (TVLight*) light;
 	switch (state) {
 		case on:
@@ -54,7 +54,7 @@ void TVLight::defaultLightFunction(const FlickeringLight* light, const LightStat
 	}
 }
 
-void TVLight::defaultSoundFunction(const FlickeringLight* light, const LightState state) {
+void TVLight::defaultSoundFunction(const FlickeringLight* light, const LightState state, const bool changed) {
 	TVLight* tvLight = (TVLight*) light;
 
 }

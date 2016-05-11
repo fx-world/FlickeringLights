@@ -35,7 +35,7 @@ void WelderLight::setup() {
 	}
 }
 
-void WelderLight::defaultLightFunction(const FlickeringLight* light, const LightState state) {
+void WelderLight::defaultLightFunction(const FlickeringLight* light, const LightState state, const bool changed) {
 	WelderLight* weldingLight = (WelderLight*) light;
 	switch (state) {
 		case on:
@@ -56,7 +56,7 @@ void WelderLight::defaultLightFunction(const FlickeringLight* light, const Light
 	}
 }
 
-void WelderLight::defaultSoundFunction(const FlickeringLight* light, const LightState state) {
+void WelderLight::defaultSoundFunction(const FlickeringLight* light, const LightState state, const bool changed) {
 	WelderLight* weldingLight = (WelderLight*) light;
 	if (weldingLight->soundPin > 0) {
 		switch (state) {

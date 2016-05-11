@@ -19,6 +19,22 @@
  #include "WProgram.h"
 #endif
 
+struct LightColor {
+	uint8_t r = 0;
+	uint8_t g = 0;
+	uint8_t b = 0;
+
+	LightColor() {
+
+	}
+
+	LightColor(uint8_t r, uint8_t g, uint8_t b) {
+		this->r = r;
+		this->g = g;
+		this->b = b;
+	}
+};
+
 enum LightState {
 	on,
 	off,
@@ -40,14 +56,14 @@ public:
 
 	void setEnabled(bool value);
 
-	void setLightFuntion(void(*lightFunction)(const FlickeringLight*, const LightState));
-	void setSoundFuntion(void(*soundFunction)(const FlickeringLight*, const LightState));
+	void setLightFuntion(void(*lightFunction)(const FlickeringLight*, const LightState, const bool));
+	void setSoundFuntion(void(*soundFunction)(const FlickeringLight*, const LightState, const bool));
 
 protected:
-	void updateState(LightState state);
+	void updateState(LightState state, bool changed);
 
-	void(*lightFunction)(const FlickeringLight*, const LightState) = 0;
-	void(*soundFunction)(const FlickeringLight*, const LightState) = 0;
+	void(*lightFunction)(const FlickeringLight* light, const LightState state, const bool changed) = 0;
+	void(*soundFunction)(const FlickeringLight* light, const LightState state, const bool changed) = 0;
 
 private:
 	LightState state = off;

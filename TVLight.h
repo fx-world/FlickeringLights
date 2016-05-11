@@ -38,8 +38,8 @@ private:
 	unsigned int pauseBrightnessMin = 75;
 	unsigned int pauseBrightnessMax = 175;
 
-	static void defaultLightFunction(const FlickeringLight*, const LightState);
-	static void defaultSoundFunction(const FlickeringLight*, const LightState);
+	static void defaultLightFunction(const FlickeringLight*, const LightState, const bool changed);
+	static void defaultSoundFunction(const FlickeringLight*, const LightState, const bool changed);
 };
 
 #endif /* TVLIGHT_H_ */
